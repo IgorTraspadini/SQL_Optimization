@@ -39,7 +39,7 @@ best practices in SQL querry](https://github.com/IgorTraspadini/SQL_Optimization
 
 ### About the Database
 
-If you want run the project, it´s possible to use the database attached that have xxxMB and 1M of records or create your own database with fake data [here]().  
+If you want run the project, it´s possible to use the database attached that have 210MB and 1M of records or create your own database with fake data [here]().  
 ```
 The tables on the database
     Table name
@@ -120,6 +120,21 @@ cursor = conn.cursor()
 
 ### Replace ‘Case-when Like’
 Use ‘regexp_extract’ to replace ‘Case-when Like’
+```SQL
+SELECT *
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+JOIN City ON City.City_id = Address.City_id
+JOIN Country ON Country.Country_id = Address.Address_id
+WHERE lower(Country) LIKE '%bela%' OR
+      lower(Country) LIKE '%bra%'  OR
+      lower(Country) LIKE '%uk%'   OR
+      lower(Country) LIKE '%uru%'  OR
+      lower(Country) LIKE '%ger%'  OR
+      lower(Country) LIKE '%afr%'  OR
+      lower(Country) LIKE '%ven%'
+```
+
 
 ### Use temporary table
 Convert long list of IN clause into a temporary table

@@ -118,8 +118,11 @@ conn = sqlite3.connect('db_test.db')
 cursor = conn.cursor()
 ```
 
-### Replace ‘Case-when Like’
-Use ‘regexp_extract’ to replace ‘Case-when Like’
+
+### Replace ‘LIKE’ clauses
+Use ‘regexp_like’ to replace ‘LIKE’ clauses
+
+❌
 ```SQL
 SELECT *
 FROM Customer
@@ -134,6 +137,20 @@ WHERE lower(Country) LIKE '%bela%' OR
       lower(Country) LIKE '%afr%'  OR
       lower(Country) LIKE '%ven%'
 ```
+✔️
+```SQL
+SELECT * 
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+JOIN City ON City.City_id = Address.City_id
+JOIN Country ON Country.Country_id = Address.Address_id
+WHERE REGEXP('bela|bra|uk|uru|ger|afr|ven',lower(Country))
+```
+Benefits:
+<p>✅ More concise code</p>
+<p>✅ Better performance</p> 
+
+### Replace ‘Case-when Like’
 
 
 ### Use temporary table

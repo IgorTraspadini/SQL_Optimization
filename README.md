@@ -172,8 +172,8 @@ python xxxxxxxxxxxx.py
 ```
 
 ## References 
-- [Faker Documentation](https://faker.readthedocs.io/en/master/)
-- [Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
+- [SQL](https://pt.wikipedia.org/wiki/SQL)
+- [Regular Expression](https://docs.python.org/3/library/re.html)
 
 
 ## Author

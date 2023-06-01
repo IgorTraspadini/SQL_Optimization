@@ -32,7 +32,7 @@ best practices in SQL querry](https://github.com/IgorTraspadini/SQL_Optimization
 ## Getting started
 - [About the Database](#about-the-database)
 - [Import the library](#import-the-library)
-- [Replace ‘Case-when Like’](#replace-‘Case-when-Like’)
+- [Replace ‘Case-when Like’](#replace-case-when-like)
 - [Create the tables](#create-the-tables)
 - [Normalize the database](#normalize-the-database)
 - [Check the database](#check-the-database)

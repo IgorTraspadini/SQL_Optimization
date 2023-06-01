@@ -20,16 +20,16 @@ Perform some optimization tasks and best practices in SQL querry.
 - Sqlite  
 
 ## Getting started
-- [About the Database](#about-the-database)
+- [The Database](#the-database)
 - [Import the library](#import-the-library)
 - [Replace ‘Case-when Like’](#replace-case-when-like)
 - [Create the tables](#create-the-tables)
 - [Normalize the database](#normalize-the-database)
 - [Check the database](#check-the-database)
 
-### About the Database
-
-If you want run the project, it´s possible to use the database attached that have 210MB and 1M of records or create your own database with fake data [here](https://github.com/IgorTraspadini/Sintectical_SQL_database).  
+### The Database
+The database consist of four tables and sixteen fields with fake informations about customers and address as show below, to support the SQL query optimization.
+If you want run the project, it´s possible to use the [database]() that have 210MB and 1M of records or create your own database with fake data [here](https://github.com/IgorTraspadini/Sintectical_SQL_database).  
 ```
 The tables on the database
     Table name
@@ -108,7 +108,6 @@ conn = sqlite3.connect('db_test.db')
 cursor = conn.cursor()
 ```
 
-
 ### Replace ‘LIKE’ clauses
 Use ‘regexp_like’ to replace ‘LIKE’ clauses
 
@@ -141,7 +140,7 @@ Benefits:
 <p>✅ Better performance</p> 
 
 ### Replace ‘Case-when Like’
-
+Use ‘regexp_extract’ to replace ‘Case-when Like’
 
 ### Use temporary table
 Convert long list of IN clause into a temporary table

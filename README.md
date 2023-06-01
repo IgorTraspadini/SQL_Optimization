@@ -1,15 +1,5 @@
-# SQL_Optimization
-Perform some optimization tasks and best practices in SQL querry.
-
-
 # About the Project
-
-In some tasks we need a simple database with a large quantity of data to perform some labs or optimization tests,        
-however to find it in the internet is not soo easy, the size of the file is soo large or need to be converted to a         
-specific format.       
-
-Intended to solve this issue, I've created this project that I'll using after to perform some [optimization tasks and 
-best practices in SQL querry](https://github.com/IgorTraspadini/SQL_Optimization).
+Perform some optimization tasks and best practices in SQL querry.
 
 **Table of contents**
 - [About the Project](#about-the-project)
@@ -39,7 +29,7 @@ best practices in SQL querry](https://github.com/IgorTraspadini/SQL_Optimization
 
 ### About the Database
 
-If you want run the project, it´s possible to use the database attached that have 210MB and 1M of records or create your own database with fake data [here]().  
+If you want run the project, it´s possible to use the database attached that have 210MB and 1M of records or create your own database with fake data [here](https://github.com/IgorTraspadini/Sintectical_SQL_database).  
 ```
 The tables on the database
     Table name

@@ -29,7 +29,7 @@ Perform some optimization tasks and best practices in SQL querry.
 
 ### The Database
 The database consist of four tables and sixteen fields with fake informations about customers and address as show below, to support the SQL query optimization.
-If you want run the project, it´s possible to use the [database]() that have 210MB and 1M of records or create your own database with fake data [here](https://github.com/IgorTraspadini/Sintectical_SQL_database).  
+If you want run the project, it´s possible to use the [database](https://1drv.ms/u/s!AtuOpzYtzJ15hetWXLw1f1o-8GFhHg?e=JD6Tfk) that have 210MB and 1M of records or create your own database with fake data [here](https://github.com/IgorTraspadini/Sintectical_SQL_database).  
 ```
 The tables on the database
     Table name

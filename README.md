@@ -22,10 +22,14 @@ Perform some optimization tasks and best practices in SQL querry.
 ## Getting started
 - [The Database](#the-database)
 - [Import the library](#import-the-library)
+- [Replace ‘LIKE’ clauses](#replace-like-clauses)
 - [Replace ‘Case-when Like’](#replace-case-when-like)
-- [Create the tables](#create-the-tables)
-- [Normalize the database](#normalize-the-database)
-- [Check the database](#check-the-database)
+- [Use temporary table](#use-temporary-table)
+- [JOINs order](#joins-order)
+- [GROUP BY](#group-by)
+- [Use simple equi-joins](#use-simple-equi-joins)
+- [Avoid subqueries in WHERE clause](#avoid-subqueries-in-where-clause)
+- [Use Max instead of Rank](#use-max-instead-of-rank)
 
 ### The Database
 The database consist of four tables and sixteen fields with fake informations about customers and address as show below, to support the SQL query optimization.
@@ -116,8 +120,8 @@ Use ‘regexp_like’ to replace ‘LIKE’ clauses
 SELECT *
 FROM Customer
 JOIN Address ON Customer.Address_id = Address.Address_id
-JOIN City ON City.City_id = Address.City_id
-JOIN Country ON Country.Country_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
 WHERE lower(Country) LIKE '%bela%' OR
       lower(Country) LIKE '%bra%'  OR
       lower(Country) LIKE '%uk%'   OR
@@ -131,16 +135,41 @@ WHERE lower(Country) LIKE '%bela%' OR
 SELECT * 
 FROM Customer
 JOIN Address ON Customer.Address_id = Address.Address_id
-JOIN City ON City.City_id = Address.City_id
-JOIN Country ON Country.Country_id = Address.Address_id
-WHERE REGEXP('bela|bra|uk|uru|ger|afr|ven',lower(Country))
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+WHERE REGEXP_LIKE('bela|bra|uk|uru|ger|afr|ven',lower(Country))
 ```
 Benefits:
 <p>✅ More concise code</p>
-<p>✅ Better performance</p> 
+<p>✅ Better performance (depends on the database structure and the function regex)</p> 
 
 ### Replace ‘Case-when Like’
 Use ‘regexp_extract’ to replace ‘Case-when Like’
+
+❌
+```SQL
+SELECT CASE WHEN lower(Country) LIKE '%belarus%' THEN 'belarus'
+            WHEN lower(Country) LIKE '%brazil%'  THEN 'brazil'
+            WHEN lower(Country) LIKE '%uruguay%' THEN 'uruguay'
+            WHEN lower(Country) LIKE '%germany%' THEN 'germany'
+            WHEN lower(Country) LIKE '%nauru%'   THEN 'nauru'
+            WHEN lower(Country) LIKE '%venezuela%' THEN 'venezuela' ELSE '' END AS Countr_
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+```
+✔️
+```SQL
+SELECT REGEXP_CASE('belarus|brazil|uruguay|germany|nauru|venezuela',lower(Country))
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+```
+Benefits:
+<p>✅ More concise code</p>
+<p>✅ Better performance (depends on the database structure and the function regex)</p> 
 
 ### Use temporary table
 Convert long list of IN clause into a temporary table
@@ -157,7 +186,6 @@ Two tables with date string e.g., ‘2020-09-01’, but one of the tables only h
 ### Avoid subqueries in WHERE clause
 
 ### Use Max instead of Rank
-
 
 ## Rum Project
 ```bash

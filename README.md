@@ -177,6 +177,25 @@ Convert long list of IN clause into a temporary table
 ### JOINs order
 Order the JOINs from largest tables to smallest tables
 
+❌
+```SQL
+SELECT *
+FROM Country
+RIGHT JOIN Address ON Country.Country_id = Address.Address_id
+RIGHT JOIN City ON City.City_id = Address.City_id
+JOIN Customer ON Address.Address_id = Customer.Address_id
+```
+✔️
+```SQL
+SELECT *
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+```
+Benefits:
+<p>✅ Better performance</p> 
+
 ### GROUP BY
 Always "GROUP BY" by the attribute/column with the largest number of unique entities/values
 

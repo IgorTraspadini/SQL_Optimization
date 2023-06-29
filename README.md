@@ -204,7 +204,9 @@ Two tables with date string e.g., ‘2020-09-01’, but one of the tables only h
 
 ### Avoid subqueries in WHERE clause
 
+
 ### Use Max instead of Rank
+
 
 ## Rum Project
 ```bash

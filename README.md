@@ -199,6 +199,27 @@ Benefits:
 ### GROUP BY
 Always "GROUP BY" by the attribute/column with the largest number of unique entities/values
 
+❌
+```SQL
+SELECT Country, City, COUNT(customer_id)
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+GROUP BY Country, City
+```
+✔️
+```SQL
+SELECT Country, City, COUNT(customer_id)
+FROM Customer
+JOIN Address ON Customer.Address_id = Address.Address_id
+LEFT JOIN City ON City.City_id = Address.City_id
+LEFT JOIN Country ON Country.Country_id = Address.Address_id
+GROUP BY City, Country
+```
+Benefits:
+<p>✅ Better performance</p> 
+
 ### Use simple equi-joins
 Two tables with date string e.g., ‘2020-09-01’, but one of the tables only has columns for year, month, day values
 
